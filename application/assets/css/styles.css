@@ -1,0 +1,36 @@
+header {
+  padding-top: 1.618em;
+}
+
+img.logo {
+  position: relative;
+  top: -1.618em;
+}
+
+.container {
+  max-width: 960px;
+}
+
+img.float-left {
+  float: left;
+  margin: 0 1.618em 1.618em 0;
+  box-shadow: 0 0.618em 1em hsla(0,0%,0%,0.15);
+}
+
+.newsItem {
+  background: hsl(0,0%,95%);
+  border-radius: 0.38em;
+  padding: 1em 1.38em;
+  margin: 1em 0;
+}
+
+footer {
+  margin-top: 1.618em;
+  padding-top: 1em;
+  color: #777;
+  border-top: 1px solid #e5e5e5;
+}
+
+footer p {
+  font-size: 11pt;
+}
