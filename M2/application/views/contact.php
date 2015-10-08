@@ -34,7 +34,7 @@
 		<strong>Tel:</strong> (012) 345-6789<br/>
 		<strong>Email:</strong> reservation@sleepymehotel.com</p>
 
-		<?= $msg ?>
+		<p class="alert alert-info"><?= $msg ?></p>
 
 		<?= form_open(site_url().'/contact/post', array('id' => 'profileForm')) ?>
 
