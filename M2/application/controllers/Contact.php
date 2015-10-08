@@ -87,11 +87,12 @@ class Contact extends CI_Controller
 
 		$this->email->subject('SleepyMe Contact From');
 		$this->email->message(
-			'IP Address of Sender: '. $this->input->ip_address() .
-			'<br/>fname:' . $this->input->post('firstname') .
-			'<br/>lname:' . $this->input->post('lastname') .
-			'<br/>age:' . $this->input->post('age') .
-			'<br/>program:' . $this->input->post('program')
+			"IP: " . $this->input->ip_address() .
+			"\r\nfname: " . $this->input->post('username') .
+			"\r\nfname: " . $this->input->post('firstname') .
+			"\r\nlname: " . $this->input->post('lastname') .
+			"\r\nage: " . $this->input->post('age') .
+			"\r\nprogram: " . $this->input->post('program')
 		);
 
 		if ($this->email->send() == false):
@@ -102,8 +103,8 @@ class Contact extends CI_Controller
 			$this->TPL['msg'] = "Thank you for your feedback!";
 		endif;
 
-		// $this->TPL['msg'] .= "<br>". $this->email->print_debugger();
 		$this->template->show('contact', $this->TPL);
 	}
+
 }
 ?>

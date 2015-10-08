@@ -23,6 +23,10 @@ img.float-left {
 	border-radius: 0.38em;
 }
 
+.newsItem:last-of-type {
+	margin-bottom: 0;
+}
+
 .map-container {
 	position: relative;
 	width: 100%;
