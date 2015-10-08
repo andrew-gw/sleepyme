@@ -1,14 +1,7 @@
-<?
-	$programOptions = array(
-		"" => "Please Select One",
-		"technology" => "Technology",
-		"business" => "Business",
-		"environment" => "Environment"
-	);
-?>
-
 <div class="row">
+
 	<div class="col-md-7">
+
 		<h2>Map</h2>
 
 		<div class="map-container">
@@ -23,18 +16,24 @@
 				</script>
 			</div>
 		</div>
+
 	</div>
 
 	<div class="col-md-5">
 
 		<h3><?= $title ?></h3>
-		<p><strong>Sleepyme Hotel</strong><br/>
-		59 rue Roubais<br/>
-		98765 Cervelo<br/>
-		<strong>Tel:</strong> (012) 345-6789<br/>
-		<strong>Email:</strong> reservation@sleepymehotel.com</p>
+		<p class="lead">
+			<strong>Sleepyme Hotel</strong><br/>
+			59 rue Roubais<br/>
+			98765 Cervelo<br/>
+			(012) 345-6789<br/>
+		</p>
 
-		<p class="alert alert-info"><?= $msg ?></p>
+		<? if ($errors) : ?>
+		<p class="alert alert-danger"><?= $msg ?></p>
+		<? elseif ($submitted) : ?>
+		<p class="alert alert-success"><?= $msg ?></p>
+		<? endif; ?>
 
 		<?= form_open(site_url().'/contact/post', array('id' => 'profileForm')) ?>
 
@@ -58,7 +57,7 @@
 
 		<div class="form-group <?php echo (!empty(form_error('age')) ? 'has-error' : '') ?>">
 			<label for="age" class="control-label">Age</label>
-			<?= form_input(array('name' => 'age', 'value' => set_value('age'), 'size' => 10, 'class' => 'form-control')); ?>
+			<?= form_input(array('name' => 'age', 'value' => set_value('age'), 'type' => 'number', 'class' => 'form-control', 'min' => '0', 'max' => '199')); ?>
 			<span class="help-block"><?= form_error('age'); ?></span>
 		</div>
 
@@ -68,8 +67,11 @@
 			<span class="help-block"><?= form_error('program'); ?></span>
 		</div>
 
-		<?= form_submit('submitForm', 'Send Form', "class='btn btn-primary'"); ?>
-		<?= form_close() ?>
+		<div class="form-group">
+			<?= form_submit('submitForm', 'Send E-mail', "class='btn btn-primary btn-lg btn-block'"); ?>
+			<?= form_close() ?>
+		</div>
 
 	</div>
+
 </div>

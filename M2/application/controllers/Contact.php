@@ -7,17 +7,27 @@ class Contact extends CI_Controller
 	function __construct()
 	{
 		parent::__construct();
+
 		$this->load->helper(array('form')); // can also autoload
 		$this->load->helper('security');
+
 		$this->TPL['title'] = "Contact";
+		$this->TPL['errors'] = false;
+		$this->TPL['submitted'] = false;
 		$this->TPL['username'] = "";
 		$this->TPL['firstname_'] = "";
+		$this->TPL['programOptions'] = array(
+			"" => "Please Select One",
+			"technology" => "Technology",
+			"business" => "Business",
+			"environment" => "Environment"
+			);
 	}
 
 	public function index()
 	{
-		$this->TPL['msg'] = "Contact Us Form";
-		$this->TPL['firstname_'] = "Barthalomew Benjamin"; //populate form data
+		// $this->TPL['msg'] = "Contact Us Form";
+		$this->TPL['firstname_'] = "Barthalomew Benjamin";
 
 		$this->template->show('contact', $this->TPL);
 	}
@@ -27,20 +37,23 @@ class Contact extends CI_Controller
 	{
 		$this->load->library('form_validation');
 
-		$this->form_validation->set_rules('username', 'User name', 'callback_username_check');
-		$this->form_validation->set_rules('firstname', 'First name', 'trim|required|min_length[3]|max_length[25]');
+		$this->form_validation->set_rules('username', 'User name', 'callback_username_check|xss_clean');
+		$this->form_validation->set_rules('firstname', 'First name', 'trim|required|min_length[3]|max_length[25]|xss_clean');
 		$this->form_validation->set_rules('lastname', 'Last name', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('age', 'Age', 'trim|required|integer');
+		$this->form_validation->set_rules('age', 'Age', 'trim|required|integer|xss_clean');
 		$this->form_validation->set_rules('program', 'Programs', 'required');
 
 		if ($this->form_validation->run() == FALSE):
-			$this->TPL['msg'] = 'Errors still in form';
+			$this->TPL['errors'] = true;
+			$this->TPL['msg'] = 'Please fill out the form';
 			$this->template->show('contact' ,$this->TPL);
 			return;
 		endif;
 
-		$this->TPL['msg'] = "Thank you for your interest.";
-		$this->template->show('contact' ,$this->TPL);
+		$this->mailMe();
+		// $this->TPL['submitted'] = true;
+		// $this->TPL['msg'] = "Thanks for your feedback!";
+		// $this->template->show('contact' ,$this->TPL);
 	}
 
 	// Callback function for form validation
@@ -57,7 +70,7 @@ class Contact extends CI_Controller
 			return FALSE;
 		endif;
 
-		return TRUE; // all good
+		return TRUE;
 	}
 
 	function mailMe()
@@ -73,15 +86,17 @@ class Contact extends CI_Controller
 		$this->email->to('000306746@csunix.mohawkcollege.ca');
 
 		$this->email->subject('SleepyMe Contact From');
-		$this->email->message('IP Address of Sender: '. $this->input->ip_address());
+		$this->email->message('IP Address of Sender: '. $this->input->ip_address() . ' fname:' . $this->input->post('firstname'));
 
 		if ($this->email->send() == false):
-			$this->TPL['msg'] = "Email Failed.... <br>";
+			$this->TPL['errors'] = true;
+			$this->TPL['msg'] = "Sorry, failed to send e-mail!";
 		else:
-			$this->TPL['msg'] = "Email sent. Check it with Pine";
+			$this->TPL['submitted'] = true;
+			$this->TPL['msg'] = "Thank you for your feedback!";
 		endif;
 
-		$this->TPL['msg'] .= "<br>". $this->email->print_debugger();
+		// $this->TPL['msg'] .= "<br>". $this->email->print_debugger();
 		$this->template->show('contact', $this->TPL);
 	}
 }
