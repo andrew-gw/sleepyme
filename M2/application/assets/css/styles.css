@@ -1,0 +1,61 @@
+header {
+	padding-top: 1.618em;
+}
+
+img.logo {
+	position: relative;
+	top: -1.618em;
+}
+
+.container {
+	max-width: 960px;
+}
+
+img.float-left {
+	float: left;
+	margin: 0 1.618em 0.618em 0;
+}
+
+.newsItem {
+	background: hsl(0,0%,95%);
+	padding: 1em 1.38em;
+	margin: 1em 0;
+	border-radius: 0.38em;
+}
+
+.map-container {
+	position: relative;
+	width: 100%;
+	padding-bottom: 100%;
+}
+
+.map-container #map {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: 0;
+	padding: 0;
+	border-radius: 0.38em;
+}
+
+/* Hide Google Map junk */
+.gm-style-cc {
+	display: none;
+}
+
+#rooms-and-rates td {
+	vertical-align: middle !important;
+}
+
+footer {
+	margin: 1.618em 0;
+	padding-top: 1em;
+	color: #777;
+	border-top: 1px solid #e5e5e5;
+}
+
+footer p {
+	font-size: 11pt;
+}
