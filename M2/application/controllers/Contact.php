@@ -86,7 +86,13 @@ class Contact extends CI_Controller
 		$this->email->to('000306746@csunix.mohawkcollege.ca');
 
 		$this->email->subject('SleepyMe Contact From');
-		$this->email->message('IP Address of Sender: '. $this->input->ip_address() . ' fname:' . $this->input->post('firstname'));
+		$this->email->message(
+			'IP Address of Sender: '. $this->input->ip_address() .
+			'<br/>fname:' . $this->input->post('firstname') .
+			'<br/>lname:' . $this->input->post('lastname') .
+			'<br/>age:' . $this->input->post('age') .
+			'<br/>program:' . $this->input->post('program')
+		);
 
 		if ($this->email->send() == false):
 			$this->TPL['errors'] = true;
