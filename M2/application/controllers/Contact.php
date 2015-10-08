@@ -62,12 +62,17 @@ class Contact extends CI_Controller
 
 	function mailMe()
 	{
+		if (! ini_get('date.timezone'))
+		{
+			date_default_timezone_set('GMT');
+		}
+
 		$this->load->library('email');
 
-		$this->email->from('bruch@csunix.mohawkcollege.ca', 'Big Guy');
+		$this->email->from('000306746@csunix.mohawkcollege.ca', 'SleepyMe Hotel');
 		$this->email->to('000306746@csunix.mohawkcollege.ca');
 
-		$this->email->subject('Email From SleepyMe Contact From');
+		$this->email->subject('SleepyMe Contact From');
 		$this->email->message('IP Address of Sender: '. $this->input->ip_address());
 
 		if ($this->email->send() == false):
