@@ -134,9 +134,8 @@ class Contact extends CI_Controller
 			$this->TPL['submitted'] = true;
 		$this->TPL['msg'] = "Thanks for your feedback!";
 		endif;
-	}
 
-	$this->template->show('contact', $this->TPL);
+		$this->template->show('contact', $this->TPL);
 	}
 
 }
