@@ -39,7 +39,8 @@ class Contact extends CI_Controller
 			return;
 		endif;
 
-		redirect('contact/customerCommentSent');
+		// redirect('contact/customerCommentSent');
+		$this->customerCommentSent();
 	}
 
 	function validate_name($str)
