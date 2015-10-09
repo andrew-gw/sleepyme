@@ -14,15 +14,6 @@ class Contact extends CI_Controller
 		$this->TPL['title'] = "Contact";
 		$this->TPL['errors'] = false;
 		$this->TPL['submitted'] = false;
-
-		// $this->TPL['username'] = "";
-		// $this->TPL['firstname_'] = "";
-		// $this->TPL['programOptions'] = array(
-		// 	"" => "Please Select One",
-		// 	"technology" => "Technology",
-		// 	"business" => "Business",
-		// 	"environment" => "Environment"
-		// 	);
 	}
 
 	public function index()
@@ -31,7 +22,7 @@ class Contact extends CI_Controller
 	}
 
 	// Form validation class
-	public function formValidated()
+	public function post()
 	{
 		$this->load->library('form_validation');
 

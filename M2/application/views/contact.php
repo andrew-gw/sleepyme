@@ -35,7 +35,7 @@
 		<p class="alert alert-success"><?= $msg ?></p>
 		<? endif; ?>
 
-		<?= form_open(site_url() . '/contact/formValidated', array('id' => 'customerComment')) ?>
+		<?= form_open(site_url() . '/contact/post', array('id' => 'customerComment')) ?>
 
 		<div class="form-group <?php echo (!empty(form_error('name')) ? 'has-error' : '') ?>">
 			<label for="name" class="control-label">Full Name</label>
