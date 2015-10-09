@@ -39,8 +39,8 @@ class Contact extends CI_Controller
 			return;
 		endif;
 
-		redirect('contact/customerCommentSent', $this->input->post());
-		// $this->customerCommentSent();
+		// redirect('contact/customerCommentSent'.$this->input->post());
+		$this->customerCommentSent();
 	}
 
 	function validate_name($str)
@@ -111,13 +111,16 @@ class Contact extends CI_Controller
 	{
 		if (! ini_get('date.timezone')) date_default_timezone_set('GMT');
 
+		$name = $this->input->post('name');
+		$email = $this->input->post('email');
+
 		$this->load->library('email');
 
-		$this->email->from('000306746@csunix.mohawkcollege.ca', 'SleepyMe');
+		$this->email->from($email, $name);
 		$this->email->to('000306746@csunix.mohawkcollege.ca');
-		$this->email->subject('SleepyMe Customer Comment');
+		$this->email->subject('SleepyMe Comment');
 		$this->email->message(
-			"IP: " . $this->input->ip_address() .
+			"ip: " . $this->input->ip_address() .
 			"\r\nname: " . $this->input->post('name') .
 			"\r\npostal: " . $this->input->post('postal') .
 			"\r\nphone: " . $this->input->post('phone') .
