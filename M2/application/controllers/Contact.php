@@ -39,8 +39,7 @@ class Contact extends CI_Controller
 			return;
 		endif;
 
-		redirect('contact/customerCommentSent'.$this->input->post());
-		// $this->customerCommentSent();
+		$this->customerCommentSent();
 	}
 
 	function validate_name($str)
@@ -133,6 +132,7 @@ class Contact extends CI_Controller
 		else:
 			$this->TPL['submitted'] = true;
 			$this->TPL['msg'] = "Thanks for your feedback!";
+			unset($_POST);
 		endif;
 
 		$this->template->show('contact', $this->TPL);
