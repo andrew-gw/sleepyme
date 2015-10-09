@@ -35,36 +35,36 @@
 		<p class="alert alert-success"><?= $msg ?></p>
 		<? endif; ?>
 
-		<?= form_open(site_url().'/contact/post', array('id' => 'profileForm')) ?>
+		<?= form_open(site_url() . '/contact/formValidated', array('id' => 'customerComment')) ?>
 
-		<div class="form-group <?php echo (!empty(form_error('username')) ? 'has-error' : '') ?>">
-			<label for="username" class="control-label">Username</label>
-			<?= form_input(array('name' => 'username', 'value' => set_value('username', $username), 'size' => 50, 'class' => 'form-control')) ?>
-			<span class="help-block"><?= form_error('username'); ?></span>
+		<div class="form-group <?php echo (!empty(form_error('name')) ? 'has-error' : '') ?>">
+			<label for="name" class="control-label">Full Name</label>
+			<?= form_input(array('name' => 'name', 'value' => set_value('name'), 'class' => 'form-control')) ?>
+			<span class="help-block"><?= form_error('name'); ?></span>
 		</div>
 
-		<div class="form-group <?php echo (!empty(form_error('firstname')) ? 'has-error' : '') ?>">
-			<label for="firstname" class="control-label">First Name</label>
-			<?= form_input(array('name' => 'firstname', 'value' => set_value('firstname',$firstname_), 'size' => 50, 'class' => 'form-control')); ?>
-			<span class="help-block"><?= form_error('firstname'); ?></span>
+		<div class="form-group <?php echo (!empty(form_error('postal')) ? 'has-error' : '') ?>">
+			<label for="postal" class="control-label">Postal Code</label>
+			<?= form_input(array('name' => 'postal', 'value' => set_value('postal'), 'class' => 'form-control')); ?>
+			<span class="help-block"><?= form_error('postal'); ?></span>
 		</div>
 
-		<div class="form-group <?php echo (!empty(form_error('lastname')) ? 'has-error' : '') ?>">
-			<label for="lastname" class="control-label">Last Name</label>
-			<?= form_input(array('name' => 'lastname', 'value' => set_value('lastname'), 'size' => 50, 'class' => 'form-control')); ?>
-			<span class="help-block"><?= form_error('lastname'); ?></span>
+		<div class="form-group <?php echo (!empty(form_error('phone')) ? 'has-error' : '') ?>">
+			<label for="phone" class="control-label">Phone Number</label>
+			<?= form_input(array('name' => 'phone', 'value' => set_value('phone'), 'type' => 'tel', 'class' => 'form-control')); ?>
+			<span class="help-block"><?= form_error('phone'); ?></span>
 		</div>
 
-		<div class="form-group <?php echo (!empty(form_error('age')) ? 'has-error' : '') ?>">
-			<label for="age" class="control-label">Age</label>
-			<?= form_input(array('name' => 'age', 'value' => set_value('age'), 'type' => 'number', 'class' => 'form-control', 'min' => '0', 'max' => '199')); ?>
-			<span class="help-block"><?= form_error('age'); ?></span>
+		<div class="form-group <?php echo (!empty(form_error('email')) ? 'has-error' : '') ?>">
+			<label for="email" class="control-label">E-mail</label>
+			<?= form_input(array('name' => 'email', 'value' => set_value('email'), 'type' => 'email', 'class' => 'form-control')); ?>
+			<span class="help-block"><?= form_error('email'); ?></span>
 		</div>
 
-		<div class="form-group <?php echo (!empty(form_error('program')) ? 'has-error' : '') ?>">
-			<label for="program" class="control-label">Program</label>
-			<?= form_dropdown('program', $programOptions, $this->input->post('program'), 'id="select" class="form-control"') ?>
-			<span class="help-block"><?= form_error('program'); ?></span>
+		<div class="form-group <?php echo (!empty(form_error('comment')) ? 'has-error' : '') ?>">
+			<label for="comment" class="control-label">Comment</label>
+			<?= form_textarea(array('name' => 'comment', 'value' => set_value('comment'), 'rows' => '4', 'class' => 'form-control')); ?>
+			<span class="help-block"><?= form_error('comment'); ?></span>
 		</div>
 
 		<div class="form-group">
