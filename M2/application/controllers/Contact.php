@@ -132,9 +132,9 @@ class Contact extends CI_Controller
 		else:
 			$this->TPL['submitted'] = true;
 			$this->TPL['msg'] = "Thanks for your feedback!";
-			unset($_POST);
 		endif;
 
+		unset($_POST);
 		$this->template->show('contact', $this->TPL);
 	}
 
