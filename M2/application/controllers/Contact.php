@@ -122,7 +122,7 @@ class Contact extends CI_Controller
 		$this->load->library('email');
 
 		$this->email->from($this->input->post('email'), $this->input->post('name'));
-		$this->email->to('000306746@csunix.mohawkcollege.ca,andrew.gw@me.com');
+		$this->email->to('000306746@csunix.mohawkcollege.ca');
 		$this->email->subject('SleepyMe Customer Comment');
 		$this->email->message(
 			"IP: " . $this->input->ip_address() .
@@ -132,7 +132,7 @@ class Contact extends CI_Controller
 			"\r\ncomment: " . $this->input->post('comment')
 		);
 
-		if ($this->email->send() == false):
+		if (! $this->email->send()):
 			$this->TPL['errors'] = true;
 			$this->TPL['msg'] = "We didn't receive your message for some reason.";
 		else:
