@@ -115,24 +115,28 @@ class Contact extends CI_Controller
 
 		$this->load->library('email');
 
-		$this->email->from($email, $name);
-		$this->email->to('000306746@csunix.mohawkcollege.ca, andrew.gw@me.com');
-		$this->email->subject('SleepyMe Comment');
-		$this->email->message(
-			"ip: " . $this->input->ip_address() .
-			"\r\nname: " . $this->input->post('name') .
-			"\r\npostal: " . $this->input->post('postal') .
-			"\r\nphone: " . $this->input->post('phone') .
-			"\r\ncomment: " . $this->input->post('comment')
-		);
+		$recipients = array('andrew.gw@me.com','000306746@csunix.mohawkcollege.ca');
 
-		if (! $this->email->send()):
-			$this->TPL['errors'] = true;
+		foreach ($recipients as $recipient) {
+			$this->email->from($email, $name);
+			$this->email->to($recipient);
+			$this->email->subject('SleepyMe Comment');
+			$this->email->message(
+				"ip: " . $this->input->ip_address() .
+				"\r\nname: " . $this->input->post('name') .
+				"\r\npostal: " . $this->input->post('postal') .
+				"\r\nphone: " . $this->input->post('phone') .
+				"\r\ncomment: " . $this->input->post('comment')
+				);
+
+			if (! $this->email->send()):
+				$this->TPL['errors'] = true;
 			$this->TPL['msg'] = "We didn't receive your message for some reason.";
-		else:
-			$this->TPL['submitted'] = true;
+			else:
+				$this->TPL['submitted'] = true;
 			$this->TPL['msg'] = "Thanks for your feedback!";
-		endif;
+			endif;
+		}
 
 		$this->template->show('contact', $this->TPL);
 	}
