@@ -122,7 +122,7 @@ class Contact extends CI_Controller
 		$this->load->library('email');
 
 		$this->email->from($this->input->post('email'), $this->input->post('name'));
-		$this->email->to('000306746@csunix.mohawkcollege.ca','andrew.gw@me.com');
+		$this->email->to('000306746@csunix.mohawkcollege.ca,andrew.gw@me.com');
 		$this->email->subject('SleepyMe Customer Comment');
 		$this->email->message(
 			"IP: " . $this->input->ip_address() .
