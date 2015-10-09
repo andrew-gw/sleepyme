@@ -39,8 +39,8 @@ class Contact extends CI_Controller
 			return;
 		endif;
 
-		// redirect('contact/customerCommentSent'.$this->input->post());
-		$this->customerCommentSent();
+		redirect('contact/customerCommentSent'.$this->input->post());
+		// $this->customerCommentSent();
 	}
 
 	function validate_name($str)
@@ -117,7 +117,7 @@ class Contact extends CI_Controller
 		$this->load->library('email');
 
 		$this->email->from($email, $name);
-		$this->email->to('000306746@csunix.mohawkcollege.ca');
+		$this->email->to('000306746@csunix.mohawkcollege.ca, andrew.gw@me.com');
 		$this->email->subject('SleepyMe Comment');
 		$this->email->message(
 			"ip: " . $this->input->ip_address() .
