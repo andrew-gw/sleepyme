@@ -116,7 +116,7 @@ class Contact extends CI_Controller
 		$this->load->library('email');
 
 		$this->email->from($email, $name);
-		$this->email->to('000306746@csunix.mohawkcollege.ca, andrew.gw@me.com');
+		$this->email->to('000306746@csunix.mohawkcollege.ca', 'andrew.gw@me.com');
 		$this->email->subject('SleepyMe Comment');
 		$this->email->message(
 			"ip: " . $this->input->ip_address() .
@@ -134,7 +134,6 @@ class Contact extends CI_Controller
 			$this->TPL['msg'] = "Thanks for your feedback!";
 		endif;
 
-		unset($_POST);
 		$this->template->show('contact', $this->TPL);
 	}
 
