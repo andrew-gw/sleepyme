@@ -120,7 +120,7 @@ class Contact extends CI_Controller
 		$this->email->subject('SleepyMe Customer Comment');
 		$this->email->message(
 			"ip: " . $this->input->ip_address() .
-			"date: " . date('D M j, Y @ h:i:s a') .
+			"\r\ndate: " . date('D M j, Y @ h:i:s a') .
 			"\r\nname: " . $this->input->post('name') .
 			"\r\npostal: " . $this->input->post('postal') .
 			"\r\nphone: " . $this->input->post('phone') .
