@@ -115,11 +115,8 @@ class Contact extends CI_Controller
 
 		$this->load->library('email');
 
-		$recipients = array('andrew.gw@me.com', '000306746@csunix.mohawkcollege.ca');
-
-		foreach ($recipients as $recipient) {
-			$this->email->from($email, $name);
-			$this->email->to($recipient);
+		$this->email->from($email, $name);
+			$this->email->to('andrew.gw@me.com');
 			$this->email->subject('SleepyMe Comment');
 			$this->email->message(
 				"ip: " . $this->input->ip_address() .
@@ -129,14 +126,13 @@ class Contact extends CI_Controller
 				"\r\ncomment: " . $this->input->post('comment')
 				);
 
-			if (! $this->email->send()):
+			if ($this->email->send() == FALSE) {
 				$this->TPL['errors'] = true;
 				$this->TPL['msg'] = "We didn't receive your message for some reason.";
-			else:
+			} else {
 				$this->TPL['submitted'] = true;
 				$this->TPL['msg'] = "Thanks for your feedback!";
-			endif;
-		}
+			}
 
 		$this->template->show('contact', $this->TPL);
 	}
