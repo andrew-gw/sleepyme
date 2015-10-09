@@ -121,7 +121,7 @@ class Contact extends CI_Controller
 
 		$this->load->library('email');
 
-		$this->email->from($this->input->post('email'), $this->input->post('name'));
+		$this->email->from('000306746@csunix.mohawkcollege.ca', 'SleepyMe');
 		$this->email->to('000306746@csunix.mohawkcollege.ca');
 		$this->email->subject('SleepyMe Customer Comment');
 		$this->email->message(
